@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew dependencies:*)",
+      "Bash(./gradlew clean:*)",
+      "Bash(java -version)",
+      "Bash(where java:*)",
+      "Read(//c/Program Files/Java/**)",
+      "Read(//c/Program Files/**)",
+      "Bash(./gradlew test:*)",
+      "Bash(\"C:\\\\Users\\\\BYUN\\\\.jdks\\\\corretto-17.0.14\\\\bin\\\\java.exe\" -cp \"build\\\\classes\\\\java\\\\test;build\\\\classes\\\\java\\\\main\" hello.aop.AopApplicationTests)",
+      "Bash(\"C:/Users/BYUN/.jdks/corretto-17.0.14/bin/javap.exe\" -verbose -classpath \"C:/Users/BYUN/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/4.0.5/465309ef0008c598d714c3b4d27c9f9e0876d015/spring-boot-4.0.5.jar\" org.springframework.boot.SpringApplication)",
+      "Bash(cat:*)",
+      "Bash(ls \"C:/Users/BYUN/Desktop/김영한/소스코드\\(심화\\)/advanced_v20211025/advanced/aop/\")",
+      "Bash(ls:*)",
+      "Bash(grep -v \"^\\\\-\\\\-$\")"
+    ]
+  }
+}
