@@ -6,6 +6,7 @@ import hello.aop.order.OrderService;
 import hello.aop.order.aop.AspectV1;
 import hello.aop.order.aop.AspectV2;
 import hello.aop.order.aop.AspectV3;
+import hello.aop.order.aop.AspectV4Pointcuts;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,8 @@ import org.springframework.context.annotation.Import;
 @SpringBootTest
 //@Import(AspectV1.class)
 //@Import(AspectV2.class)
-@Import(AspectV3.class)
+//@Import(AspectV3.class)
+@Import(AspectV4Pointcuts.class)
 public class AopTest {
 
     @Autowired
@@ -34,7 +36,7 @@ public class AopTest {
 
     @Test
     void checkBeans() {
-        System.out.println(applicationContext.getBean(AspectV3.class));
+        System.out.println(applicationContext.getBean(AspectV4Pointcuts.class));
     }
 
     @Test
