@@ -3,10 +3,7 @@ package hello.aop;
 
 import hello.aop.order.OrderRepository;
 import hello.aop.order.OrderService;
-import hello.aop.order.aop.AspectV1;
-import hello.aop.order.aop.AspectV2;
-import hello.aop.order.aop.AspectV3;
-import hello.aop.order.aop.AspectV4Pointcuts;
+import hello.aop.order.aop.*;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +19,8 @@ import org.springframework.context.annotation.Import;
 //@Import(AspectV1.class)
 //@Import(AspectV2.class)
 //@Import(AspectV3.class)
-@Import(AspectV4Pointcuts.class)
+//@Import(AspectV4Pointcuts.class)
+@Import({AspectV5Order.LogAspect.class, AspectV5Order.TxAspect.class})
 public class AopTest {
 
     @Autowired
@@ -34,10 +32,10 @@ public class AopTest {
     @Autowired
     ApplicationContext applicationContext;
 
-    @Test
-    void checkBeans() {
-        System.out.println(applicationContext.getBean(AspectV4Pointcuts.class));
-    }
+//    @Test
+//    void checkBeans() {
+//        System.out.println(applicationContext.getBean(AspectV5Order.class));
+//    }
 
     @Test
     @DisplayName("aop 적용 여부 test")
