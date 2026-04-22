@@ -229,6 +229,80 @@ public class ExecutionTest {
         Assertions.assertThat(pointcut.matches(intetnalMethod, MemberServiceImpl.class)).isTrue();
     }
 
+    /*
+    16. execution pointcut 사용하기
+    - 파라미터(메서드)로 매칭하는 case ( helloMethod 랑 )
+    - pointcut 내에 명시한 파라미터 타입과 매칭되는 경우 고려
+    - 메소드(helloMethod)의 파라미터 타입과 pointcut에 명시한 파라미터가 일치하는 경우 True
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 13")
+    void argsMatch()  {
 
+        pointcut.setExpression("execution(* *(String))");
+        Assertions.assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+
+    /*
+    17. execution pointcut 사용하기
+    - 파라미터(메서드)로 매칭하는 case ( helloMethod 랑 )
+    - pointcut 내에 명시한 파라미터 타입과 매칭되지 않는 경우 고려
+    - 메소드(helloMethod)의 파라미터 타입과 pointcut에 명시한 파라미터가 일치하지 않는 경우 False
+    - 단, ()의 경우 파라미터가 없는 경우
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 13")
+    void argsMatchNoArgs()  {
+
+        pointcut.setExpression("execution(* *())");
+        Assertions.assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isFalse();
+    }
+
+
+    /*
+    18. execution pointcut 사용하기
+    - 파라미터(메서드)로 매칭하는 case ( helloMethod 랑 )
+    - pointcut 내에 명시한 파라미터 타입이 파라미터의 모든 타입을 고려하는 경우
+    - 메소드(helloMethod)의 파라미터 타입과 pointcut에 명시한 파라미터가 일치하는 경우 True
+    - 단 정확히 하나의 파라미터를 허용하면서 모든 타입에 대해 매칭 가능한 경우
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 13")
+    void argsMatchStar()  {
+
+        pointcut.setExpression("execution(* *(*))");
+        Assertions.assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+    /*
+    19. execution pointcut 사용하기
+    - 파라미터(메서드)로 매칭하는 case ( helloMethod 랑 )
+    - pointcut 내에 명시한 파라미터 타입이 파라미터의 모든 타입을 고려하는 경우
+    - 메소드(helloMethod)의 파라미터 타입과 pointcut에 명시한 파라미터가 일치하는 경우 True
+    - 모든 파라미터 갯수와 모든 타입의 파라미터를 허용하면서 매칭 가능한 경우
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 13")
+    void argsMatchAll()  {
+
+        pointcut.setExpression("execution(* *(..))");
+        Assertions.assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+    /*
+    20. execution pointcut 사용하기
+    - 파라미터(메서드)로 매칭하는 case ( helloMethod 랑 )
+    - pointcut 내에 명시한 파라미터 타입이 파라미터의 모든 타입을 고려하는 경우
+    - 메소드(helloMethod)의 파라미터 타입과 pointcut에 명시한 파라미터가 일치하는 경우 True
+    - 모든 파라미터 갯수와 String 타입의 파라미터를 허용하면서 매칭 가능한 경우
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 13")
+    void argsMatchComplex()  {
+
+        pointcut.setExpression("execution(* *(String, ..))");
+        Assertions.assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
 }
 
