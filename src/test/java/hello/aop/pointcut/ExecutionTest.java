@@ -169,6 +169,66 @@ public class ExecutionTest {
         Assertions.assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
     }
 
+    /*
+    12. execution pointcut 사용하기
+    - 타입 정보로 매칭하는 case ( helloMethod 랑 )
+    - pointcut 내에 존재하는 타입 정보와 매칭시킨 요소들이 포인트 컷 대상
+    - 메소드(helloMethod)의 객체 타입과 포인트컷 대상의 타입이 정확하게 일치하는 경우
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 12")
+    void typeExactMatch() {
+
+        pointcut.setExpression("execution(* hello.aop.order.member.MemberServiceImpl.*(..))");
+        Assertions.assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+    /*
+    13. execution pointcut 사용하기
+    - 타입 정보로 매칭하는 case ( helloMethod 랑 )
+    - pointcut 내에 존재하는 타입 정보와 매칭시킨 요소들이 포인트 컷 대상
+    - 메소드(helloMethod)의 객체 타입과 포인트컷 대상의 타입이 부모 타입으로 일치하는 경우
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 13")
+    void typeMatchSuperMatch() {
+
+        pointcut.setExpression("execution(* hello.aop.order.member.MemberService.*(..))");
+        Assertions.assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+    /*
+    14. execution pointcut 사용하기
+    - 타입 정보로 매칭하는 case ( intetnalMethod 랑 )
+    - pointcut 내에 존재하는 타입 정보와 매칭시킨 요소들이 포인트 컷 대상
+    - 메소드(helloMethod)의 객체 타입과 포인트컷 대상의 타입이 부모 타입으로 일치하지만, 부모 타입에 정의된 메서드가 아닌 경우
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 13")
+    void typeMatchInternal() throws NoSuchMethodException {
+
+        pointcut.setExpression("execution(* hello.aop.order.member.MemberService.*(..))");
+
+        Method intetnalMethod = MemberServiceImpl.class.getMethod("internal", String.class);
+        Assertions.assertThat(pointcut.matches(intetnalMethod, MemberServiceImpl.class)).isFalse();
+    }
+
+    /*
+    15. execution pointcut 사용하기
+    - 타입 정보로 매칭하는 case ( intetnalMethod 랑 )
+    - pointcut 내에 존재하는 타입 정보와 매칭시킨 요소들이 포인트 컷 대상
+    - 메소드(helloMethod)의 객체 타입과 포인트컷 대상의 타입이 일치하면서(부모타입 x), 해당 객체에 정의된 메서드인 경우
+    */
+    @Test
+    @DisplayName("execution pointcut으로 매칭하기 13")
+    void typeMatchInternal2() throws NoSuchMethodException {
+
+        pointcut.setExpression("execution(* hello.aop.order.member.MemberServiceImpl.*(..))");
+
+        Method intetnalMethod = MemberServiceImpl.class.getMethod("internal", String.class);
+        Assertions.assertThat(pointcut.matches(intetnalMethod, MemberServiceImpl.class)).isTrue();
+    }
+
 
 }
 
