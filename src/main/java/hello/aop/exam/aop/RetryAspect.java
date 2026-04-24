@@ -16,7 +16,8 @@ public class RetryAspect {
      *   @Around("@annotation(hello.aop.exam.annotation.Retry)") 1) 해당 방신은 포인트컷의 위치만 지정
      *   @Around("@annotation(retry)") 2) 해당 방식으로 포인트컷을 지정하면 <br>
      *   public Object doRetry(..., Retry retry)  <br>이 파라미터로 받은 retry 객체에 정보가 담김
-     *   <br> 이처럼 파라미터로 retry 객체를 받아 객체에 담긴 정보를 활용 가능하다.
+     *   <br> 이
+     * 처럼 파라미터로 retry 객체를 받아 객체에 담긴 정보를 활용 가능하다.
      *
      * */
 
