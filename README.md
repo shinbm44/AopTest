@@ -40,5 +40,11 @@ tasks.named('test') {
 
 ## issue
 From Spring Boot 4.x onward,<br>
-the existing spring-boot-starter-aop dependency was renamed to spring-boot-starter-aspectj.
+the existing spring-boot-starter-aop dependency was renamed to spring-boot-starter-aspectj.<br>
+<br>
+Spring Boot 2.6 introduced a change that disables circular references by default.<br>
+To allow circular references, you need to add the following configuration to your application.properties file:
+```
+spring.main.allow-circular-references=true
+```
 
